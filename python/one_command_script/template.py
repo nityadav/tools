@@ -1,26 +1,38 @@
 # Author: Nitin
-# Usage example: python template.py hi -b 42 --foo bye
+# Usage example: python template.py start foo -o 42
 # Tested with python 3.4
 
 import argparse
+
+def start():
+	print("Inside start function")
+
+def stop():
+	print("Inside stop function")
 
 def main():
 	# create the parser
 	parser = argparse.ArgumentParser(description="This is some description of your tool")
 
 	# add the arguments
-	# examples of a positional argument
-	parser.add_argument("a", type=str, help="a's Help text")
+	# passing an action to your program
+	parser.add_argument("whattodo", choices=["start", "stop"], help="help text")
 
-	# example of a optional argument
-	parser.add_argument("-b", "--bar", type=int, help="b's Help text")
-	parser.add_argument("--foo", type=str, help="foo's Help text")
+	# passing some required data to your program.
+	parser.add_argument("reqd_datum", type=str, help="help text")
+
+	# passing some optional data to your program
+	parser.add_argument("-o", "--opt_data", type=int, help="help text")
 
 	# parse the arguments
 	args = parser.parse_args()
 
-	# print the value of args
-	print(args.a + str(args.bar) + args.foo)
+	# print the value of the data
+	print(args.reqd_datum)
+	print(args.opt_data)
+
+	# calling the action
+	globals()[args.whattodo]()
 
 if __name__ == '__main__':
 	main()
