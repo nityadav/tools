@@ -1,0 +1,10 @@
+i=1
+hosts_file=<path of all the hosts name in newline>
+for f in `cat $hosts_file`
+do
+  echo $i: $f
+  i=$[$i+1]
+done
+echo "Select the host you want to connect to: "
+read choice
+ssh -A `awk "NR==$choice" $hosts_file`
