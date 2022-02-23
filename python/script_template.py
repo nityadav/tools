@@ -1,5 +1,10 @@
 import argparse
 
+
+def main(args):
+    pass
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Description of the script.')
     parser.add_argument('foo', help='Description of the required argument')
@@ -10,4 +15,4 @@ if __name__ == '__main__':
                         help='Description of the optional argument which has a default and type')
     parser.add_argument('-c', dest='c', default='alice', choices=['alice', 'bob'],
                         help='Description of the optional argument which has choices')
-    args = parser.parse_args()
+    main(parser.parse_args())
